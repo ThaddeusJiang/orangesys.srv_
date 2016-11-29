@@ -7,10 +7,7 @@ machine:
     Asia/Tokyo
   environment:
     PROJECT_NAME: orangesys
-    CLOUDSDK_COMPUTE_ZONE: asia-east1-c
-    CLUSTER_NAME: orangesysio
-    DEBIAN_FRONTEND: noninteractive
-
+    CLOUDSDK_COMPUTE_ZONE: asia-northeast1-c
   services:
     - docker
 
