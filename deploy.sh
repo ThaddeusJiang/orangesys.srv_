@@ -7,6 +7,6 @@ if [ -z "${_tag}" ]; then
     _tag=${_VERSION}
 fi
 
-docker tag "orangesys/orangesys-srv:${_tag}" "asia.gcr.io/orange-sys/orangesys-srv:${_tag}"
+docker tag "orangesys/orangesys-srv:${_tag}" "asia.gcr.io/saas-orangesys-io/orangesys-srv:${_tag}"
 docker login -e $DOCKER_EMAIL -u _json_key -p "$(cat ${HOME}/account-auth.json)" https://asia.gcr.io
 docker push asia.gcr.io/saas-orangesys-io/orangesys-srv:${_tag}
