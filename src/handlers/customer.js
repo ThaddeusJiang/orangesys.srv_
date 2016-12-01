@@ -21,10 +21,13 @@ export const create = (req, res) => {
     .create({ email, uid })
     .then((result) => {
       customerData = result
-      customer.subscribe(customerData, planId)
+      return customer.subscribe(customerData, planId)
     })
-    .then(() => (
-      res.end(JSON.stringify(customerData))
+    .then(subscription => (
+      res.end(JSON.stringify({
+        customerId: customer.id,
+        subscriptionId: subscription.id,
+      }))
     ))
     .catch((err) => {
       res.writeHead(400, { 'Content-Type': 'text/json' })
