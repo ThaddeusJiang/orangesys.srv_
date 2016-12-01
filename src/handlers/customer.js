@@ -23,12 +23,13 @@ export const create = (req, res) => {
       customerData = result
       return customer.subscribe(customerData, planId)
     })
-    .then(subscription => (
-      res.end(JSON.stringify({
-        customerId: customer.id,
+    .then((subscription) => {
+      const data = {
+        customerId: customerData.id,
         subscriptionId: subscription.id,
-      }))
-    ))
+      }
+      res.end(JSON.stringify(data))
+    })
     .catch((err) => {
       res.writeHead(400, { 'Content-Type': 'text/json' })
       const errorData = err.raw
