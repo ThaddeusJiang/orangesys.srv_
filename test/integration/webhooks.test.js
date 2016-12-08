@@ -7,7 +7,7 @@ import testData from './event_data/invoice.created'
 
 const STRIPE_TEST_CUSTOMER_ID = process.env.STRIPE_TEST_CUSTOMER_ID || 'cus_9XvY3G2GRXjJ4c'
 const STRIPE_TEST_WEBHOOK_URL = process.env.STRIPE_TEST_WEBHOOK_URL
-  || 'http://127.0.0.1:5001/webhooks'
+  || 'http://127.0.0.1:5001/stripe/webhooks'
 const STRIPE_TEST_PLAN_ID = process.env.STRIPE_TEST_PLAN_ID || 'test-plan1'
 
 console.log('STRIPE_TEST_CUSTOMER_ID:', STRIPE_TEST_CUSTOMER_ID)
