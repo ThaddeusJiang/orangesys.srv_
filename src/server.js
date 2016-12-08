@@ -9,7 +9,7 @@ const API_PREFIX = '/stripe'
 const app = new Express()
 app.use(cors())
 app.use(bodyParser.json())
-
+app.get('/', (req, res) => res.send('ok'))
 app.post(`${API_PREFIX}/customers`, customer.create)
 app.post(`${API_PREFIX}/webhooks`, webhook.handle)
 
