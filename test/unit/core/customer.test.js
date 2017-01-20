@@ -1,9 +1,8 @@
 import assert from 'power-assert'
 import moment from 'moment'
+import Customer, { trialEndTimestamp } from '../../../src/core/customer'
 
-import {
-  trialEndTimestamp,
-} from '../../../src/core/customer'
+const dummySecretKey = 'xxxxxxxxx'
 
 describe('trialEndTimestamp', () => {
   it('works', () => {
@@ -23,5 +22,24 @@ describe('trialEndTimestamp', () => {
     ].forEach(({ current, expected }) => {
       assert(trialEndTimestamp(current) === expected)
     })
+  })
+})
+
+describe('changeCard', () => {
+  it('works', () => {
+    const customerId = 'cus_9xrGGO2fLQyQ4D';
+    const dummyToken = 'dummyToken';
+    const customer = new Customer(dummySecretKey, dummyToken);
+    // stub
+    customer.stripe = {
+      customers: {
+        update: (id, data, callback) => {
+          assert(id === customerId)
+          assert.deepEqual(data, { source: dummyToken })
+          callback(null, {})
+        },
+      },
+    }
+    return customer.changeCard(customerId)
   })
 })

@@ -11,6 +11,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.get('/', (req, res) => res.send('ok'))
 app.post(`${API_PREFIX}/customers`, customer.create)
+app.post(`${API_PREFIX}/change_card`, customer.changeCard)
 app.post(`${API_PREFIX}/webhooks`, webhook.handle)
 
 app.listen(PORT, () => {
