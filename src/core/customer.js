@@ -21,6 +21,15 @@ export default class Customer {
     this.stripe = stripe(stripeSecretKey)
     this.token = token
   }
+  changeCard(customerId) {
+    return new Promise((resolve, reject) => {
+      const data = { source: this.token }
+      this.stripe.customers.update(customerId, data, (err, customer) => {
+        if (err) { reject(err); return }
+        resolve(customer);
+      })
+    })
+  }
   create({ email, uid }) {
     return new Promise((resolve, reject) => {
       this.stripe.customers.create({
@@ -35,8 +44,6 @@ export default class Customer {
       })
     })
   }
-
-
   subscribe(customer, planId) {
     return new Promise((resolve, reject) => {
       this.stripe.subscriptions.create({

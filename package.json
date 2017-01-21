@@ -30,6 +30,7 @@
     "lodash": "^4.16.4",
     "moment": "^2.15.1",
     "power-assert": "^1.4.1",
+    "proxyquire": "^1.7.10",
     "sinon": "^1.17.6",
     "stripe": "~4.12.0"
   },

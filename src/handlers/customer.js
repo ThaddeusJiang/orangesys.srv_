@@ -37,3 +37,29 @@ export const create = (req, res) => {
       res.end(JSON.stringify(errorData))
     })
 }
+
+export const changeCard = (req, res) => {
+  const { body } = req
+  if (!body) {
+    res.writeHead(400)
+    res.end('body is empty.')
+    return
+  }
+  const { token, customerId } = body
+  if (!token || !customerId) {
+    res.writeHead(400)
+    res.end('params are missing (token, customerId).')
+    return
+  }
+  const customer = new Customer(STRIPE_SECRET_KEY, token)
+  customer.changeCard(customerId)
+    .then(() => {
+      res.end('ok')
+    })
+    .catch((err) => {
+      res.writeHead(400, { 'Content-Type': 'text/json' })
+      const errorData = err.raw
+      console.error('error:', errorData, 'body:', body) // eslint-disable-line no-console
+      res.end(JSON.stringify(errorData))
+    })
+}
